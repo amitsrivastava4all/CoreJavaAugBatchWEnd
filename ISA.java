@@ -5,13 +5,22 @@ class Account extends Object{
 	void deposit() {
 		System.out.println("Account Deposit");
 	}
+	void withDraw() {
+		System.out.println("Account WithDraw...");
+	}
 }
 class CurrentAccount extends Account{
+	
 	void roi() {
 		System.out.println("Pay 5% ROI");
 	}
 }
 class SavingAccount extends Account{
+	@Override
+	void withDraw() {
+		super.withDraw();
+		System.out.println("SA WithDraw with Limit");
+	}
 	void roi() {
 		System.out.println("3% ROI");
 	}
@@ -27,6 +36,7 @@ public class ISA {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		SavingAccount sa = new SavingAccount();
+		sa.withDraw();
 		sa.roi();
 		sa.limit();
 		sa.deposit();
