@@ -1,0 +1,30 @@
+Street Fighter
+1. Frame (Size / Title) (GameConstants)
+2. Board , First Load the Big Image (ImageLoader), BufferedImage Array of 12 Size (getSubImage and fill the Array)
+3. Start the Timer and Image Keep Changing (Array Index Keep Increasing till reach to 12-1 and then reset to 0)
+********************************* TEST ***************************
+4. Create Player class (First Object)
+BufferedImage Array  (Move, Kick , Punch , Jump)
+
+****************************** TEST ****************************
+
+5. Create Second Object of Player Class (Enemy)
+BufferedImage Array  (Move, Kick , Punch , Jump)
+
+***************** Test **************************
+6. Collision with Status and Impact 
+Impact Higher Action Effect to other Player
+
+***************** Test ****************************
+7. Power Manage + Game Over
+
+
+
+1. Game
+a) Board / Drawing
+b) Image Load/ Sound Load
+c) Events (Space Bar / Arrow Key)
+D) Camera Effect (Background Move)
+E) Bullet / Missile 
+F) Collision
+G) Fall Effect
