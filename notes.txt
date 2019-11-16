@@ -1,0 +1,34 @@
+Exception Handling
+
+Exception is a class
+When Ever Exception is generated , internally java create
+An object of exception.
+And this object is throw to the JVM.
+JVM will crash the application.
+ArithmeticException, ArrayIndexOutOfBoundException, FileNotFoundException all these are predefine classes.
+
+try{
+Int e = 10/0;
+
+}
+catch(ArithmeticException e){
+System.exit(0);
+}
+finally{
+// Always execute Code either exception is coming or not
+// resource clean up code
+}
+
+If we want our application cannot crash so we will catch the exception object before it reach to JVM.
+So catch and handle it.
+
+
+What is Exception?
+Abnormal Condition which terminate the program flow.
+e.g 10/0 ArithmeticException
+
+e.g let array size is 10 and ur accessing 20 element
+ArrayIndexOutOfBoundException
+
+e.g image file is missing and code try to access an image
+FileNotFoundException
