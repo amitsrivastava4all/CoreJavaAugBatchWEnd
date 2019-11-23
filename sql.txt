@@ -1,0 +1,4 @@
+create database ims;
+use ims;
+create table users(uid int(10) AUTO_INCREMENT, userid varchar(50) unique not null, password varchar(50) not null, status varchar(1) default 'A', PRIMARY KEY (uid),logintime timestamp);
+insert into users (userid, password,status) values('admin','admin','F');
