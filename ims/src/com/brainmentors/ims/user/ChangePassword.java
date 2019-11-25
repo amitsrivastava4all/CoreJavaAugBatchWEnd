@@ -1,29 +1,36 @@
 package com.brainmentors.ims.user;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.SwingConstants;
-import java.awt.Font;
 import java.awt.Color;
-import javax.swing.JPasswordField;
-import javax.swing.JButton;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
-import java.awt.event.ActionEvent;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+
+import com.brainmentors.ims.user.dto.UserDTO;
 
 public class ChangePassword extends JFrame {
-
+	JLabel msglbl = new JLabel("");
 	private JPanel contentPane;
 	private JPasswordField passwordField;
 	private JPasswordField passwordField_1;
+	private String msg;
+	public ChangePassword(UserDTO userDTO) {
+		this();
+		msg = "Welcome "+userDTO.getUserid();
+		msglbl.setText(msg);
+	}
 
 	void generatePassword(String pwd) throws NoSuchAlgorithmException {
 		byte salt[] = getSalt();
@@ -102,7 +109,7 @@ public class ChangePassword extends JFrame {
 		JLabel lblChangePassword = new JLabel("Change Password");
 		lblChangePassword.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		lblChangePassword.setHorizontalAlignment(SwingConstants.CENTER);
-		lblChangePassword.setBounds(92, 43, 225, 25);
+		lblChangePassword.setBounds(88, 60, 225, 25);
 		contentPane.add(lblChangePassword);
 		
 		JLabel lblNewPassword = new JLabel("New Password");
@@ -131,6 +138,10 @@ public class ChangePassword extends JFrame {
 		});
 		btnChange.setBounds(88, 210, 117, 29);
 		contentPane.add(btnChange);
+		
+		
+		msglbl.setFont(new Font("Lucida Grande", Font.BOLD, 20));
+		msglbl.setBounds(16, 6, 314, 42);
+		contentPane.add(msglbl);
 	}
-
 }

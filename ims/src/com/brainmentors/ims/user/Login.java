@@ -1,20 +1,24 @@
 package com.brainmentors.ims.user;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.SwingConstants;
-import javax.swing.JTextField;
-import javax.swing.JPasswordField;
-import javax.swing.JButton;
 import java.awt.Color;
-import java.awt.event.ActionListener;
+import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+
+import com.brainmentors.ims.user.dao.UserDAO;
+import com.brainmentors.ims.user.dto.UserDTO;
 
 public class Login extends JFrame {
 
@@ -25,9 +29,36 @@ public class Login extends JFrame {
 	private void doLogin() {
 		String userid  = useridTextField.getText();
 		System.out.println(passwordField.getPassword());
-		String password = passwordField.getPassword().toString();
+		String password = new String(passwordField.getPassword());
 		// Check userid or password in DB, Change password screen
+		UserDTO userDTO = new UserDTO();
+		userDTO.setUserid(userid);
+		userDTO.setPassword(password);
+		System.out.println("Userid "+userid +" Password "+password);
+		UserDAO userDAO = new UserDAO();
+		try {
+			userDTO= userDAO.login(userDTO);
+			if(userDTO.isLoginSuccess()) {
+				
+				JOptionPane.showMessageDialog(this, "Login SuccessFully");
+				this.setVisible(false);
+				this.dispose();
+				ChangePassword cp = new ChangePassword(userDTO);
+				cp.setVisible(true);
+			}
+			else {
+				JOptionPane.showMessageDialog(this, "Invalid Userid or Password");
+			}
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(this, "DB Problem");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(this, "DB Problem");
 		}
+	}
 	/**
 	 * Launch the application.
 	 */
